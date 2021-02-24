@@ -154,7 +154,7 @@ typedef struct
 	u8 manual_locked;
 	u8 unlock_err;
 	u8 unlock_cmd;
-	u8 unlock_sta;//unlocked
+	u8 unlock;//unlocked
 	u8 thr_low;
 	u8 locking;
 	u8 taking_off; //Æð·É

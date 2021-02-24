@@ -51,7 +51,7 @@ void IMU_Update_Task(u8 dT_ms)
 {
 ////////////////////////////////////////////////////////////////////////		
 			/*如果准备飞行，复位重力复位标记和磁力计复位标记*/
-				if(flag.unlock_sta )
+				if(flag.unlock)
 				{
 					imu_state.G_reset = imu_state.M_reset = 0;
 					reset_imu_f = 0;
@@ -62,15 +62,15 @@ void IMU_Update_Task(u8 dT_ms)
 					{//经过ano变换的数据自动复位
 						imu_state.G_reset = 1;
 						//sensor.gyr_CALIBRATE = 2;
-					}	
+					}
 					
 					if(reset_imu_f==0 )//&& flag.motionless == 1)
 					{//若未置位则置位
 						imu_state.G_reset = 1;	
 						st_imu_cali.gyr_cali_on = 2;//校准陀螺仪，不保存
-						reset_imu_f = 1;		//note 不知道这个cali是干什么的
+						reset_imu_f = 1; //这日了狗的代码风格
 					}
-								
+					
 				}
 									
 				if(0) 
@@ -86,7 +86,7 @@ void IMU_Update_Task(u8 dT_ms)
 						imu_state.gkp = 0.2f;
 					}
 					else
-					{//attention: 好像很重要但是我不知道这是个什么东西
+					{
 						/*设置重力互补融合修正kp系数*/
 						imu_state.gkp = 0.2f;//0.4f;
 					}
@@ -97,7 +97,6 @@ void IMU_Update_Task(u8 dT_ms)
 					/*设置罗盘互补融合修正ki系数*/
 					imu_state.mkp = 0.1f;
 				}
-				//note
 				imu_state.M_fix_en = sens_hd_check.mag_ok;		//磁力计修正使能
 	
 				if(st_imuData.data_sta==1)

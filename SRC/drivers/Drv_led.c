@@ -1,8 +1,8 @@
 /******************** (C) COPYRIGHT 2017 ANO Tech ********************************
- * 作者    ：匿名科创
+ * 作�?    ：匿名科�?
  * 官网    ：www.anotc.com
  * 淘宝    ：anotc.taobao.com
- * 技术Q群 ：190169595
+ * 技术Q�? �?190169595
  * 描述    ：LED驱动
 **********************************************************************************/
 #include "Drv_led.h"
@@ -45,7 +45,7 @@ u16 led_accuracy = 20;//该时间应与LED_Duty()调用周期相同
 float LED_Brightness[4] = {0,20,0,0}; //TO 20 //XBRG
 
 
-//LED的1ms驱动，在1ms定时中断里调用。
+//LED�?1ms驱动，在1ms定时中断里调用�?
 void LED_1ms_DRV( ) //0~20
 {
 	static u16 led_cnt[4];
@@ -146,7 +146,7 @@ static void ledBreath(u8 dT_ms,u8 led,u16 T)
 			LED_Brightness[i] = 0;
 	}
 }
-//					调用周期   LED     亮时间    灭时间
+//					调用周期   LED     亮时�?    灭时�?
 static void ledFlash(u8 dT_ms,u8 led, u16 on_ms,u16 off_ms)
 {
 	static u16 tim_tmp;
@@ -246,18 +246,18 @@ void LED_Task2(u8 dT_ms)
 	{
 		ledFlash(dT_ms,BIT_RLED,100,100);
 	}
-	else	//无其他提示，正常显示模式档位及外置光流、Gps等状态
+	else	//无其他提示，正常显示模式档位及外置光流、Gps等状�?
 	{
 		static u8  statmp = 0;
 		static u8  modtmp = 0;
 		
-		if(statmp == 0)			//显示飞行模式1、2、3，白色未解锁，绿色解锁，模式几就闪几次
+		if(statmp == 0)			//显示飞行模式1�?2�?3，白色未解锁，绿色解锁，模式几就闪几�?
 		{
 			if(modtmp <= flag.flight_mode)
 			{
 				if(timtmp < 60)
 				{
-					if(flag.unlock_sta)
+					if(flag.unlock)
 						ledOnOff(BIT_GLED);
 					else
 						ledOnOff(BIT_WLED);
@@ -278,7 +278,7 @@ void LED_Task2(u8 dT_ms)
 				statmp = 1;
 			}
 		}
-		else if(statmp == 1)	//显示光流、GPS等状态
+		else if(statmp == 1)	//显示光流、GPS等状�?
 		{
 			if(modtmp == 0)		//判断GPS是否正常
 			{

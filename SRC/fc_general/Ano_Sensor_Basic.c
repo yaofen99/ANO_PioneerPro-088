@@ -44,6 +44,8 @@ void Center_Pos_Set()
 	center_pos.center_pos_cm[Z] = Z_POS_OFFSET_CM;//+0.0f;
 }
 
+
+
 static float gyr_f[5][VEC_XYZ],acc_f[5][VEC_XYZ];
 
 void Sensor_Data_Prepare(u8 dT_ms)

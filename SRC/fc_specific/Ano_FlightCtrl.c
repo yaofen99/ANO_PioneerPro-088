@@ -116,7 +116,7 @@ void one_key_take_off_task(u16 dt_ms)
 		}
 	}
 	//reset
-	if(flag.unlock_sta == 0)
+	if(flag.unlock == 0)
 	{
 		one_key_taof_start = 0;
 	}
@@ -159,11 +159,9 @@ static s16 ld_delay_cnt ;
 void land_discriminat(s16 dT_ms)
 {
 //	static s16 acc_delta,acc_old;
-	
 //	acc_delta = imu_data.w_acc[Z]- acc_old;
 //	acc_old = imu_data.w_acc[Z];
-	
-	/*油门归一值小于0.1  或者启动自动降落*/
+/*油门归一值小于0.1  或者启动自动降落*/
 	if((fs.speed_set_h_norm[Z] < 0.1f) || flag.auto_take_off_land == AUTO_LAND)
 	{
 		if(ld_delay_cnt>0)
@@ -180,7 +178,7 @@ void land_discriminat(s16 dT_ms)
 	if(ld_delay_cnt <= 0 && (flag.thr_low || flag.auto_take_off_land == AUTO_LAND) )
 	{
 		/*油门最终输出量小于250并且没有在手动解锁上锁过程中，持续1秒，认为着陆，然后上锁*/
-		if(mc.ct_val_thr<250 && flag.unlock_sta == 1 && flag.locking != 2)//ABS(wz_spe_f1.out <20 ) //还应当 与上速度条件，速度小于正20厘米每秒。
+		if(mc.ct_val_thr<250 && flag.unlock == 1 && flag.locking != 2)//ABS(wz_spe_f1.out <20 ) //还应当 与上速度条件，速度小于正20厘米每秒。
 		{
 			if(landing_cnt<1500)
 			{
@@ -203,8 +201,6 @@ void land_discriminat(s16 dT_ms)
 		{
 			landing_cnt = 0;
 		}
-			
-		
 	}
 	else
 	{
@@ -226,20 +222,19 @@ void Flight_State_Task(u8 dT_ms,s16 *CH_N)
 	fs.speed_set_h_norm_lpf[Z] += 0.5f *(fs.speed_set_h_norm[Z] - fs.speed_set_h_norm_lpf[Z]);
 	
 	/*推油门起飞*/
-	if(flag.unlock_sta)
+	if(flag.unlock)
 	{	
 		if(fs.speed_set_h_norm[Z]>0.01f && flag.motor_preparation == 1) // 0-1
 		{
 			flag.taking_off = 1;
 		}	
-	}		
+	}	
 	//
 	fc_stv.vel_limit_z_p = MAX_Z_SPEED_UP;
 	fc_stv.vel_limit_z_n = -MAX_Z_SPEED_DW;	
 	//
 	if(flag.taking_off)
 	{
-			
 		if(flying_cnt<1000)//800ms
 		{
 			flying_cnt += dT_ms;
@@ -276,7 +271,7 @@ void Flight_State_Task(u8 dT_ms,s16 *CH_N)
 	/*速度设定量，正负参考ANO坐标参考方向*/
 	fs.speed_set_h_norm[X] = (my_deadzone(+CH_N[CH_PIT],0,50) *0.0022f);
 	fs.speed_set_h_norm[Y] = (my_deadzone(-CH_N[CH_ROL],0,50) *0.0022f);
-		
+	
 	LPF_1_(3.0f,dT_ms*1e-3f,fs.speed_set_h_norm[X],fs.speed_set_h_norm_lpf[X]);
 	LPF_1_(3.0f,dT_ms*1e-3f,fs.speed_set_h_norm[Y],fs.speed_set_h_norm_lpf[Y]);
 	
@@ -293,7 +288,7 @@ void Flight_State_Task(u8 dT_ms,s16 *CH_N)
 	//飞控系统XY速度目标量综合设定
 	speed_set_tmp[X] = fc_stv.vel_limit_xy *fs.speed_set_h_norm_lpf[X] + program_ctrl.vel_cmps_h[X] + pc_user.vel_cmps_set_h[X];
 	speed_set_tmp[Y] = fc_stv.vel_limit_xy *fs.speed_set_h_norm_lpf[Y] + program_ctrl.vel_cmps_h[Y] + pc_user.vel_cmps_set_h[Y];
-	
+
 	length_limit(&speed_set_tmp[X],&speed_set_tmp[Y],fc_stv.vel_limit_xy,fs.speed_set_h_cms);
 
 	fs.speed_set_h[X] = fs.speed_set_h_cms[X];
@@ -320,7 +315,7 @@ void Flight_State_Task(u8 dT_ms,s16 *CH_N)
 	/*校准中，复位重力方向*/
 	if(st_imu_cali.gyr_cali_on != 0 || st_imu_cali.acc_cali_on != 0)
 	{
-		if(flag.unlock_sta==0)
+		if(flag.unlock==0)
 		{
 			imu_state.G_reset = 1;
 		}
@@ -334,7 +329,7 @@ void Flight_State_Task(u8 dT_ms,s16 *CH_N)
 		WCZ_Data_Reset(); //复位高度数据融合
 	}
 	else if(imu_state.G_reset == 0)
-	{	
+	{
 		if(flag.sensor_imu_ok == 0)
 		{
 			flag.sensor_imu_ok = 1;
@@ -342,9 +337,9 @@ void Flight_State_Task(u8 dT_ms,s16 *CH_N)
 			AnoDTSendStr(USE_HID|USE_U2,SWJ_ADDR,LOG_COLOR_GREEN,"IMU OK!");
 		}
 	}
-	
+
 	/*飞行状态复位*/
-	if(flag.unlock_sta == 0)
+	if(flag.unlock == 0)
 	{
 		flag.flying = 0;
 		landing_cnt = 0;
