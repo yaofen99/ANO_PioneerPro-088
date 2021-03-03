@@ -38,25 +38,14 @@
 #include "Ano_Imu_Task.h"
 #include "Drv_BSP.h"
 
-typedef struct
-{
-	u32 last_time;
-	u32 this_time;
-	u32 time_period;
-} test_dt_t;
-
-static test_dt_t test_dT_1000hz;
-
-
-u32 test_rT[6];
+u32 test_dT_1000hz[3],test_rT[6];
 
 static void Loop_1000Hz(void)	//1ms执行一次
 {
-	test_dT_1000hz.last_time = test_dT_1000hz.this_time;
-
-	test_rT[3] = test_dT_1000hz.this_time = GetSysTime_us ();
-	test_dT_1000hz.time_period = (u32)(test_dT_1000hz.this_time - test_dT_1000hz.last_time) ;
-
+	test_dT_1000hz[0] = test_dT_1000hz[1];
+	test_rT[3] = test_dT_1000hz[1] = GetSysTime_us ();
+	test_dT_1000hz[2] = (u32)(test_dT_1000hz[1] - test_dT_1000hz[0]) ;
+//////////////////////////////////////////////////////////////////////	
 	/*传感器数据读取*/
 	Fc_Sensor_Get();
 	
@@ -118,12 +107,12 @@ static void Loop_100Hz(void)	//10ms执行一次
 //////////////////////////////////////////////////////////////////////				
 	/*遥控器数据处理*/
 	RC_duty_task(10);
-
+	
 	/*飞行模式设置任务*/
 	Flight_Mode_Set(10);
+	
 
-
-
+	
 	/*高度数据融合任务*/
 	WCZ_Fus_Task(10);
 	GPS_Data_Processing_Task(10);
@@ -166,7 +155,7 @@ static void Loop_50Hz(void)	//20ms执行一次
 	ANO_CBTracking_Task(20);
 	/*OPMV寻线数据处理任务*/
 	ANO_LTracking_Task(20);
-	/*OPMV控制任务*///modify notification
+	/*OPMV控制任务*/
 	ANO_OPMV_Ctrl_Task(20);
 }
 
@@ -218,17 +207,17 @@ void Scheduler_Run(void)
 	uint8_t index = 0;
 	//循环判断所有线程，是否应该执行
 
-
+	
 	for(index=0;index < TASK_NUM;index++)
 	{
 		//获取系统当前时间，单位MS
-		uint32_t time_now = SysTick_GetTick();
+		uint32_t tnow = SysTick_GetTick();
 		//进行判断，如果当前时间减去上一次执行的时间，大于等于该线程的执行周期，则执行线程
-		if(time_now - sched_tasks[index].last_run >= sched_tasks[index].interval_ticks)
+		if(tnow - sched_tasks[index].last_run >= sched_tasks[index].interval_ticks)
 		{
 			
 			//更新线程的执行时间，用于下一次判断
-			sched_tasks[index].last_run = time_now;
+			sched_tasks[index].last_run = tnow;
 			//执行线程函数，使用的是函数指针
 			sched_tasks[index].task_func();
 

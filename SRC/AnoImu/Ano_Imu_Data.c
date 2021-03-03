@@ -55,18 +55,15 @@ void ImuDataCalcu(u8 ins_calibrated,vec3_f gyrOffset,vec3_f accOffset,float IEM[
 		//转换单位
 		for(u8 i=0;i<3;i++)
 		{
-			//note：实际值和差值之间的误差
+			//
 			st_imuData.f_gyr_dps[i]   = (st_imuData.f_gyrRaw[i] - gyrOffset[i])*st_imuData.gyrSensitivity[i];
 			st_imuData.f_acc_cmpss[i] = (st_imuData.f_accRaw[i] - accOffset[i])*st_imuData.accSensitivity[i];
-			//note:PID
+			//		
 		}
 		//转ANO坐标系
-		//note  保留的坐标转换位
-
 		Vec3f_Mul_MatrixT(st_imuData.f_gyr_dps,IEM,st_imuData.f_gyr_dps_nb);
 		Vec3f_Mul_MatrixT(st_imuData.f_acc_cmpss,IEM,st_imuData.f_acc_cmpss_nb);
 		//角度转弧度
-		
 		for(u8 i=0;i<3;i++)
 		{
 			st_imuData.f_gyr_radps_nb[i] = RAD_PER_DEG *st_imuData.f_gyr_dps_nb[i];

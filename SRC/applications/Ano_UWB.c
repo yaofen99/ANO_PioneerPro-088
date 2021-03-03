@@ -133,7 +133,7 @@ void Ano_UWB_Data_Calcu_Task(u8 dT_ms)
 	//解锁前，记录当前机体X轴正方向在水平面投影为UWB坐标X轴正方向
 	//要求解锁前，飞机放正，机体X轴正方向对准UWB坐标轴X轴正方向
 	//记录参考方向
-	if(!fc_sta.unlock)
+	if(!fc_sta.unlock_sta)
 	{
 		//
 		uwb_data.init_ok = 0;

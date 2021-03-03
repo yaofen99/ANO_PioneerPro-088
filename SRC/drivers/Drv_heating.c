@@ -71,7 +71,7 @@ static u8 thermostatic_en;
 void Thermostatic_Ctrl_Task(u8 dT_ms)
 {
 	//解锁前才允许操作
-	if(flag.unlock == 0)
+	if(flag.unlock_sta == 0)
 	{
 		if(Ano_Parame.set.heatSwitch == 1)//开启恒温功能
 		{

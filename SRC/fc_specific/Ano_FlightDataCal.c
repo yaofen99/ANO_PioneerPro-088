@@ -35,13 +35,14 @@ void Fc_Sensor_Get()//1ms
 		if(cnt==0)
 		{
 			/*读取电子罗盘磁力计数据*/
-			Drv_AK8975_Read();	
+			Drv_AK8975_Read();
 			/*读取气压计数据*/
 			baro_height = (s32)Drv_Spl0601_Read();
 
 		}
 	}	
 	test_time_cnt++;
+
 }
 
 extern s32 sensor_val_ref[];
@@ -49,9 +50,12 @@ extern s32 sensor_val_ref[];
 static u8 reset_imu_f;
 void IMU_Update_Task(u8 dT_ms)
 {
+
+
+	
 ////////////////////////////////////////////////////////////////////////		
 			/*如果准备飞行，复位重力复位标记和磁力计复位标记*/
-				if(flag.unlock)
+				if(flag.unlock_sta )
 				{
 					imu_state.G_reset = imu_state.M_reset = 0;
 					reset_imu_f = 0;
@@ -59,18 +63,18 @@ void IMU_Update_Task(u8 dT_ms)
 				else 
 				{
 					if(st_imuData.data_sta==0)
-					{//经过ano变换的数据自动复位
-						imu_state.G_reset = 1;
+					{
+						imu_state.G_reset = 1;//自动复位
 						//sensor.gyr_CALIBRATE = 2;
-					}
+					}	
 					
 					if(reset_imu_f==0 )//&& flag.motionless == 1)
-					{//若未置位则置位
-						imu_state.G_reset = 1;	
+					{
+						imu_state.G_reset = 1;//自动复位	
 						st_imu_cali.gyr_cali_on = 2;//校准陀螺仪，不保存
-						reset_imu_f = 1; //这日了狗的代码风格
+						reset_imu_f = 1;     //已经置位复位标记
 					}
-					
+								
 				}
 									
 				if(0) 
@@ -97,6 +101,7 @@ void IMU_Update_Task(u8 dT_ms)
 					/*设置罗盘互补融合修正ki系数*/
 					imu_state.mkp = 0.1f;
 				}
+				
 				imu_state.M_fix_en = sens_hd_check.mag_ok;		//磁力计修正使能
 	
 				if(st_imuData.data_sta==1)
@@ -242,6 +247,11 @@ void WCZ_Fus_Task(u8 dT_ms)
 	WCZ_Data_Calc(dT_ms,wcz_f_pause,(s32)wcz_acc_use,(s32)(ref_height_used));
 
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 
 
 

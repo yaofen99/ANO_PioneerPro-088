@@ -19,7 +19,7 @@ void Auto_Take_Off_Land_Task(u8 dT_ms)//
 	
 	one_key_take_off_task(dT_ms);
 	
-	if(flag.unlock)
+	if(flag.unlock_sta)
 	{
 		if(flag.taking_off)
 		{	

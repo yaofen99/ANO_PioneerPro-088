@@ -71,10 +71,10 @@ void AccGyrStableCheck_Services(float dT_s,float acc_cmss_in[3],float gyr_dps_in
 	}
 }
 /*陀螺仪AV_N个数据平均值*/
-u8 GetGyrAvValue(u8 enable,vec3_f gyr_raw_in,vec3_f gyr_av_out)
+u8 GetGyrAvValue(u8 en,vec3_f gyr_raw_in,vec3_f gyr_av_out)
 {
 
-	if(enable == 1)
+	if(en == 1)
 	{
 		if(gyr_sum_cnt<CALI_AV_N)
 		{
@@ -88,7 +88,7 @@ u8 GetGyrAvValue(u8 enable,vec3_f gyr_raw_in,vec3_f gyr_av_out)
 			//
 			return 0;
 		}
-		else  
+		else
 		{
 			//
 			gyr_sum_cnt = 0;

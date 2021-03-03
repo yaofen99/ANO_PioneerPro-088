@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2021-01-28 02:42:06
- * @LastEditTime: 2021-02-23 21:54:34
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \ANO_PioneerPro-088\SRC\AnoImu\Ano_Imu_Task.c
- */
 #include "Ano_Imu_Data.h"
 #include "Ano_Imu_Calibration.h"
 #include "Ano_Imu_Task.h"
@@ -25,9 +17,9 @@ void ImuServices_1ms_c()
 	//数据计算
 	ImuDataCalcu(Ano_Parame.set.acc_calibrated,(float *)Ano_Parame.set.gyr_zero_offset,(float *)Ano_Parame.set.acc_zero_offset,(float (*)[])Ano_Parame.set.IEM);
 	//
-	if(flag.unlock==0 )
+	if(flag.unlock_sta==0)
 	{
-		//稳定性检测
+		//静止检测
 		AccGyrStableCheck_Services(0.001f,st_imuData.f_acc_cmpss,st_imuData.f_gyr_dps);
 		//
 		if(st_imu_cali.gyr_cali_on)
@@ -35,13 +27,13 @@ void ImuServices_1ms_c()
 			//
 			if(GetGyrAvValue(st_imu_cali.gyr_stable,st_imuData.f_gyrRaw,(float *)Ano_Parame.set.gyr_zero_offset))
 			{
-				if(st_imu_cali.gyr_cali_on==CALI_RESET)
+				if(st_imu_cali.gyr_cali_on==2)
 				{
-					st_imu_cali.gyr_cali_on = CALI_UNABLE;
+					st_imu_cali.gyr_cali_on = 0;
 				}
-				else if(st_imu_cali.gyr_cali_on==CALI_ENABLE)
+				else if(st_imu_cali.gyr_cali_on==1)
 				{
-					st_imu_cali.gyr_cali_on = CALI_UNABLE;
+					st_imu_cali.gyr_cali_on = 0;
 					//存储参数
 					data_save();
 				}

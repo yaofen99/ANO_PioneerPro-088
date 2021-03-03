@@ -100,7 +100,7 @@ void IMU_update(float dT,_imu_state_st *state,float gyr[VEC_XYZ], float acc[VEC_
 	
 	static float kp_use = 0,ki_use = 0,mkp_use = 0;
 
-	float acc_norm_l, acc_norm_l_recip, q_norm_l;
+	float acc_norm_l,acc_norm_l_recip,q_norm_l;
 		
 	float acc_norm[VEC_XYZ];
 

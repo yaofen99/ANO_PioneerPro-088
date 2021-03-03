@@ -11,7 +11,7 @@ _sensor_hd_check_st sens_hd_check;
 
 void data_save(void)
 {
-	para_sta.save_en = !flag.unlock;
+	para_sta.save_en = !flag.unlock_sta;
 	para_sta.save_trig = 1;
 }
 

@@ -476,9 +476,9 @@ _spl06_st spl_data;
 //_ano_td_st baro_data;
 //static float baro_offset;
 
-float Drv_Spl0601_Read ( void )//note 这个函数也没看
+float Drv_Spl0601_Read ( void )
 {
-	static u8 dly_cnt = 20;//忽略前20次可还行
+	static u8 dly_cnt = 20;//忽略前20次
 	static u8 vel_cnt;
 
 	//

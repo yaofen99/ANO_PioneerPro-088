@@ -154,7 +154,7 @@ typedef struct
 	u8 manual_locked;
 	u8 unlock_err;
 	u8 unlock_cmd;
-	u8 unlock;//unlocked
+	u8 unlock_sta;//unlocked
 	u8 thr_low;
 	u8 locking;
 	u8 taking_off; //起飞
@@ -176,7 +176,7 @@ typedef struct
 	u8 locked_rotor;
 	
 	
-}_flag;//保存状态，但是没有复杂的结构体，所以保存的状态只是状态
+}_flag;
 extern _flag flag;
 
 typedef struct

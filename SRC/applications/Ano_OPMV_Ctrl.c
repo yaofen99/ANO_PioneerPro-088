@@ -60,7 +60,7 @@ void ANO_OPMV_Ctrl_Task(u8 dT_ms)
 		opmv_ct_sta.height_flag =1;
 	}
 	//复位高度标记的条件
-	if(flag.unlock ==0)
+	if(flag.unlock_sta ==0)
 	{
 		//上锁后标记复位
 		opmv_ct_sta.height_flag =0;

@@ -37,7 +37,7 @@ void Motor_Ctrl_Task(u8 dT_ms)
 //		motor_prepara_cnt = 0;			
 //	}
 	
-	if(flag.unlock)
+	if(flag.unlock_sta)
 	{		
 		IDLING = 10*LIMIT(Ano_Parame.set.idle_speed_pwm,0,30);
 		
@@ -144,7 +144,7 @@ void Motor_Ctrl_Task(u8 dT_ms)
 	
 	for(i=0;i<MOTORSNUM;i++)
 	{
-		if(flag.unlock)
+		if(flag.unlock_sta)
 		{
 			if(flag.motor_preparation == 1)
 			{

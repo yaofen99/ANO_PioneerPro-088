@@ -274,7 +274,7 @@ void Att_1level_Ctrl(float dT_s)
 {
 	////////////////改变控制参数任务（最小控制周期内）////////////////////////
 	ctrl_parameter_change_task();
-
+	
 
 		/*目标角速度赋值*/
 		 for(u8 i = 0;i<3;i++)
@@ -291,7 +291,7 @@ void Att_1level_Ctrl(float dT_s)
 	att_1l_ct.fb_angular_velocity[ROL] += 0.25f *(( sensor.Gyro_deg[X] ) - att_1l_ct.fb_angular_velocity[ROL]);
 	att_1l_ct.fb_angular_velocity[PIT] += 0.25f *((-sensor.Gyro_deg[Y] ) - att_1l_ct.fb_angular_velocity[PIT]);
 	att_1l_ct.fb_angular_velocity[YAW] += 0.25f *((-sensor.Gyro_deg[Z] ) - att_1l_ct.fb_angular_velocity[YAW]);
-
+	
 
 	/*PID计算*/									 
  for(u8 i = 0;i<3;i++)
