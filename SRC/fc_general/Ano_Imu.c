@@ -88,7 +88,7 @@ static float imu_reset_val;
 
 static u16 reset_cnt;
 					 
-_imu_state_st imu_state = {1,1,1,1,1,1,1,1};
+_imu_state_st imu_state = {1,1,1,1,1,1,1,1}; //重力互补系数
 
 static float mag_2d_w_vec[2][2] = {{1,0},{1,0}};//地理坐标中，水平面磁场方向恒为南北 (1,0)
 

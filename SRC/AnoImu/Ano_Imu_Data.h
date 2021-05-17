@@ -50,11 +50,11 @@ extern _imuData_st st_imuData;
 
 /*IMU传感器灵敏度初始化*/
 void ImuSensitivityInit(u8 ins_calibrated,vec3_f accRefValue);
-/*IMU传感器数据获取*/
+/*将IMU数据从全局变量传递给结构体*/
 void ImuDataGet(vec3_s16 gyrRaw,vec3_s16 accRaw);
 /*IMU温度获取*/
 void ImuTemperatureGet(float f_temperature);
-/*IMU数据计算处理*/
+/*IMU数据是否需要坐标转换，可选弧度和ANO坐标*/
 void ImuDataCalcu(u8 ins_calibrated,vec3_f gyrOffset,vec3_f accOffset,float IEM[3][3]);
 
 	

@@ -18,6 +18,7 @@ _uwb_data_st uwb_data;
 *返 回 值: 无
 **********************************************************************************************************/
 static u8 UWB_RxBuffer[256],UWB_data_len = 0,UWB_Data_OK;
+
 void Ano_UWB_Get_Byte(u8 data)
 {
 	static u8 _data_len = 0;
@@ -82,20 +83,44 @@ void Ano_UWB_Get_Byte(u8 data)
 *参    数: 周期（毫秒）
 *返 回 值: 无
 **********************************************************************************************************/
+
+void Anthor_location_init(void)
+{		
+	uwb_data.anthor_location[0][0]= 0;
+	uwb_data.anthor_location[0][1]= 0;
+	uwb_data.anthor_location[0][2]= 1.8;
+	uwb_data.anthor_location[1][0]= 0;
+	uwb_data.anthor_location[1][1]= 4;
+	uwb_data.anthor_location[1][2]= 1.8;
+	uwb_data.anthor_location[2][0]= 4;
+	uwb_data.anthor_location[2][1]= 4;
+	uwb_data.anthor_location[2][2]= 1.1;
+	uwb_data.anthor_location[3][0]= 4;
+	uwb_data.anthor_location[3][1]= 0;
+	uwb_data.anthor_location[3][2]= 1.8;
+}
+
+
+
+
 static u16 uwb_check_time;
 void Ano_UWB_Get_Data_Task(u8 dT_ms)
 {
 	if(UWB_Data_OK)
-	{
-		UWB_Data_OK = 0;
+	{	
 		u8 sum = 0;
 		for(u8 i=0;i<(UWB_data_len-1);i++)
 			sum += *(UWB_RxBuffer+i);
 		if(!(sum==*(UWB_RxBuffer+UWB_data_len-1)))		return;		//判断sum
 		
+		uint8_t temp=0;
+//////////////////
 		if(*(UWB_RxBuffer+3)==0X31)			//距离信息
 		{
-			
+			uwb_data.distance[0] = (float)(s16)((*(UWB_RxBuffer+5)<<8)|*(UWB_RxBuffer+6)) / 100;
+			uwb_data.distance[1] = (float)(s16)((*(UWB_RxBuffer+7)<<8)|*(UWB_RxBuffer+8)) / 100;
+			uwb_data.distance[2] = (float)(s16)((*(UWB_RxBuffer+9)<<8)|*(UWB_RxBuffer+10)) / 100;
+			uwb_data.distance[3] = (float)(s16)((*(UWB_RxBuffer+11)<<8)|*(UWB_RxBuffer+12)) / 100;
 		}
 		else if(*(UWB_RxBuffer+3)==0X32)			//位置信息
 		{

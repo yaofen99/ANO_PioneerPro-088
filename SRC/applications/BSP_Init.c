@@ -59,13 +59,7 @@ u8 All_Init()
 	
 	Usart2_Init(500000);			//串口2初始化，函数参数为波特率
 	Delay_ms(10);					//延时	
-//	Uart4_Init(115200);				//首先判断是否连接的是激光模块
-//	if(!Drv_Laser_Init())			//激光没有有效连接，则配置为光流模式
-//		Uart4_Init(500000);
-//	Delay_ms(10);					//延时
-//	Usart3_Init(500000);			//连接UWB
-//	Delay_ms(10);					//延时
-	//
+
 	Usart3_Init(500000);			//连接OPENMV
 	//	
 	Uart4_Init(19200);	//接优像光流

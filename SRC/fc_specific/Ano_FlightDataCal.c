@@ -40,7 +40,7 @@ void Fc_Sensor_Get()//1ms
 			baro_height = (s32)Drv_Spl0601_Read();
 
 		}
-	}	
+	}
 	test_time_cnt++;
 
 }
@@ -123,7 +123,7 @@ void Mag_Update_Task(u8 dT_ms)
 }
 
 
-s32 baro_height,baro_h_offset,ref_height_get_1,ref_height_get_2,ref_height_used;
+s32 baro_height,baro_h_offset,ref_height_get_1,ref_height_get_2,ref_height_used; //气压计相关参数
 s32 baro2tof_offset,tof2baro_offset;
 
 float baro_fix1,baro_fix2,baro_fix;

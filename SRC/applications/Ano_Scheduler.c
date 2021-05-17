@@ -68,7 +68,6 @@ static void Loop_1000Hz(void)	//1ms执行一次
 	/*光流融合数据准备任务*/
 	ANO_OF_Data_Prepare_Task(0.001f);
 
-
 	/*数传数据交换*/
 	ANO_DT_Task1Ms();
 
@@ -111,7 +110,6 @@ static void Loop_100Hz(void)	//10ms执行一次
 	/*飞行模式设置任务*/
 	Flight_Mode_Set(10);
 	
-
 	
 	/*高度数据融合任务*/
 	WCZ_Fus_Task(10);
@@ -212,7 +210,7 @@ void Scheduler_Run(void)
 	{
 		//获取系统当前时间，单位MS
 		uint32_t tnow = SysTick_GetTick();
-		//进行判断，如果当前时间减去上一次执行的时间，大于等于该线程的执行周期，则执行线程
+		//时间到则执行，未到则跳过
 		if(tnow - sched_tasks[index].last_run >= sched_tasks[index].interval_ticks)
 		{
 			

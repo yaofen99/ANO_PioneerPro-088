@@ -232,7 +232,7 @@ void Flight_State_Task(u8 dT_ms,s16 *CH_N)
 		{
 			flag.taking_off = 1;
 		}	
-	}		
+	}
 	//
 	fc_stv.vel_limit_z_p = MAX_Z_SPEED_UP;
 	fc_stv.vel_limit_z_n = -MAX_Z_SPEED_DW;	
@@ -331,7 +331,7 @@ void Flight_State_Task(u8 dT_ms,s16 *CH_N)
 	{
 		flag.sensor_imu_ok = 0;
 		LED_STA.rst_imu = 1;
-		WCZ_Data_Reset(); //复位高度数据融合
+		WCZ_Data_Reset(); //复位高度数据融合 //ATTENTION
 	}
 	else if(imu_state.G_reset == 0)
 	{	

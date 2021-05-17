@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-03-03 22:46:35
+ * @LastEditTime: 2021-03-03 23:40:37
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \ANO_PioneerPro-088\SRC\drivers\Drv_ak8975.h
+ */
 #ifndef _AK8975_H_
 #define	_AK8975_H_
 
@@ -24,6 +32,11 @@
 #define AK8975_ASAZ_REG         0X12
 
 void Drv_AK8975CSPin_Init(void);
+/**
+读取电子罗盘磁力计数据
+ * @param {*}
+ * @return {*}
+ */
 void Drv_AK8975_Read(void);
 void Mag_Get(s16 mag_val[3]);
 #endif

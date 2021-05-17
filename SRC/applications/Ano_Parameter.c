@@ -16,7 +16,8 @@
 #include "Ano_MagProcess.h"
 
 union Parameter Ano_Parame;
-_parameter_state_st para_sta;
+
+_parameter_state_st para_sta; //数据存储标志位
 
 
 void PID_Rest()
