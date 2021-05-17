@@ -39,7 +39,5 @@
 .\build\drv_gps.o: .\SRC\drivers\Drv_Gps.h
 .\build\drv_gps.o: .\SRC\drivers\Drv_BSP.h
 .\build\drv_gps.o: .\SRC\applications\include.h
-.\build\drv_gps.o: .\SRC\applications\Ano_UWB.h
-.\build\drv_gps.o: .\SRC\fc_general\Ano_Filter.h
 .\build\drv_gps.o: .\SRC\fc_general\Ano_Imu.h
 .\build\drv_gps.o: .\SRC\applications\Ano_RC.h

@@ -41,10 +41,9 @@
 .\build\ano_motorctrl.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_motorctrl.o: .\SRC\applications\include.h
 .\build\ano_motorctrl.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_motorctrl.o: .\SRC\applications\Ano_UWB.h
-.\build\ano_motorctrl.o: .\SRC\fc_general\Ano_Filter.h
-.\build\ano_motorctrl.o: .\SRC\fc_general\Ano_Imu.h
 .\build\ano_motorctrl.o: .\SRC\drivers\Drv_spl06.h
+.\build\ano_motorctrl.o: .\SRC\fc_general\Ano_Imu.h
 .\build\ano_motorctrl.o: .\SRC\drivers\Drv_pwm_out.h
 .\build\ano_motorctrl.o: .\SRC\fc_general\Ano_MotionCal.h
+.\build\ano_motorctrl.o: .\SRC\fc_general\Ano_Filter.h
 .\build\ano_motorctrl.o: .\SRC\fc_general\Ano_Navigate.h

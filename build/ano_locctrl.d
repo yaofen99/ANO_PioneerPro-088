@@ -41,8 +41,8 @@
 .\build\ano_locctrl.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_locctrl.o: .\SRC\drivers\Drv_BSP.h
 .\build\ano_locctrl.o: .\SRC\applications\include.h
-.\build\ano_locctrl.o: .\SRC\applications\Ano_UWB.h
 .\build\ano_locctrl.o: .\SRC\fc_general\Ano_Imu.h
 .\build\ano_locctrl.o: SRC\fc_specific\Ano_FlightCtrl.h
 .\build\ano_locctrl.o: .\SRC\applications\Ano_OF.h
 .\build\ano_locctrl.o: .\SRC\applications\Ano_OF_DecoFusion.h
+.\build\ano_locctrl.o: .\SRC\applications\Ano_UWB.h

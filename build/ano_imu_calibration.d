@@ -37,8 +37,6 @@
 .\build\ano_imu_calibration.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_imu_calibration.o: .\SRC\applications\include.h
 .\build\ano_imu_calibration.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_imu_calibration.o: .\SRC\applications\Ano_UWB.h
 .\build\ano_imu_calibration.o: .\SRC\fc_general\Ano_Filter.h
 .\build\ano_imu_calibration.o: .\SRC\fc_general\Ano_Math.h
-.\build\ano_imu_calibration.o: .\SRC\fc_general\Ano_Imu.h
 .\build\ano_imu_calibration.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

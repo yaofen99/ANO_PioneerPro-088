@@ -88,7 +88,7 @@ static float imu_reset_val;
 
 static u16 reset_cnt;
 					 
-_imu_state_st imu_state = {1,1,1,1,1,1,1,1}; //重力互补系数
+_imu_state_st imu_state = {1,1,1,1,1,1,1,1};
 
 static float mag_2d_w_vec[2][2] = {{1,0},{1,0}};//地理坐标中，水平面磁场方向恒为南北 (1,0)
 
@@ -154,9 +154,6 @@ void IMU_update(float dT,_imu_state_st *state,float gyr[VEC_XYZ], float acc[VEC_
 			acc_norm[i] = imu->gra_acc[i] *acc_norm_l_recip;
 		}
 
-		
-
-		
 	// 载体坐标下的x方向向量，单位化。
     att_matrix[0][0] = imu->x_vec[X] = 1 - (2*q2q2 + 2*q3q3);
     att_matrix[0][1] = imu->x_vec[Y] = 2*q1q2 - 2*q0q3;

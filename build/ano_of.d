@@ -37,7 +37,3 @@
 .\build\ano_of.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_of.o: .\SRC\applications\include.h
 .\build\ano_of.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_of.o: SRC\applications\Ano_UWB.h
-.\build\ano_of.o: .\SRC\fc_general\Ano_Filter.h
-.\build\ano_of.o: .\SRC\fc_general\Ano_Math.h
-.\build\ano_of.o: .\SRC\fc_general\Ano_Imu.h

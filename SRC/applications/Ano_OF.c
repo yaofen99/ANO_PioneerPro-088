@@ -95,6 +95,7 @@ void AnoOF_GetOneByte(uint8_t data)
 		//		DT_data_cnt = _data_cnt+5;
 		//
 		check_time_ms[0] = 0;
+		of_init_type = 1;//标记光流为匿名光流
 		AnoOF_DataAnl(_datatemp, _data_cnt + 5); //
 	}
 	else

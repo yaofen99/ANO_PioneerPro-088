@@ -41,7 +41,6 @@
 .\build\ano_flightdatacal.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_flightdatacal.o: .\SRC\applications\include.h
 .\build\ano_flightdatacal.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_flightdatacal.o: .\SRC\applications\Ano_UWB.h
 .\build\ano_flightdatacal.o: SRC\fc_specific\Ano_MagProcess.h
 .\build\ano_flightdatacal.o: .\SRC\drivers\Drv_spl06.h
 .\build\ano_flightdatacal.o: .\SRC\drivers\Drv_ak8975.h

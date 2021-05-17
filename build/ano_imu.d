@@ -40,4 +40,3 @@
 .\build\ano_imu.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_imu.o: .\SRC\applications\include.h
 .\build\ano_imu.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_imu.o: .\SRC\applications\Ano_UWB.h

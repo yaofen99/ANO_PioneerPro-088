@@ -69,9 +69,6 @@ void user_fun(float dT,u8 action_num);
 
 void All_PID_Init(void);
 
-void one_key_take_off(void);
-void one_key_land(void);
-
 void one_key_roll(void);
 void app_one_key_roll(void);
 void app_one_key_roll_reset(void);

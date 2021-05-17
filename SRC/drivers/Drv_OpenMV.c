@@ -14,9 +14,13 @@ _openmv_data_st opmv;
 *参    数: 字节数据
 *返 回 值: 无
 **********************************************************************************************************/
+
+u8 rec_sta=0;
+
+
 void OpenMV_Byte_Get(u8 bytedata)
 {	
-	static u8 len = 0,rec_sta;
+	static u8 len = 0;
 	u8 check_val=0;
 	
 	//

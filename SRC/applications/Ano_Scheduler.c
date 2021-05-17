@@ -68,6 +68,7 @@ static void Loop_1000Hz(void)	//1ms执行一次
 	/*光流融合数据准备任务*/
 	ANO_OF_Data_Prepare_Task(0.001f);
 
+
 	/*数传数据交换*/
 	ANO_DT_Task1Ms();
 
@@ -83,6 +84,7 @@ static void Loop_500Hz(void)	//2ms执行一次
 	
 	/*电机输出控制*/
 	Motor_Ctrl_Task(2);	
+//note
 	
 	/*UWB数据获取*/
 	Ano_UWB_Get_Data_Task(2);	
@@ -110,6 +112,7 @@ static void Loop_100Hz(void)	//10ms执行一次
 	/*飞行模式设置任务*/
 	Flight_Mode_Set(10);
 	
+
 	
 	/*高度数据融合任务*/
 	WCZ_Fus_Task(10);
@@ -139,6 +142,13 @@ static void Loop_50Hz(void)	//20ms执行一次
 	ImuServices_20ms_c();
 	/*罗盘数据处理任务*/
 	Mag_Update_Task(20);
+
+//下位机程控制
+if (CH_N[AUX3]>0)
+	Program_control_task();
+
+
+
 	/*程序指令控制*/
 	FlyCtrl_Task(20);
 	//
@@ -147,14 +157,14 @@ static void Loop_50Hz(void)	//20ms执行一次
 //	Ano_UWB_Data_Calcu_Task(20);
 	/*位置速度环控制*/
 	Loc_1level_Ctrl(20,CH_N);
-	/*OPMV检测是否掉线*/
-	OpenMV_Offline_Check(20);
-	/*OPMV色块追踪数据处理任务*/
-	ANO_CBTracking_Task(20);
-	/*OPMV寻线数据处理任务*/
-	ANO_LTracking_Task(20);
-	/*OPMV控制任务*/
-	ANO_OPMV_Ctrl_Task(20);
+// 	/*OPMV检测是否掉线*/
+// 	OpenMV_Offline_Check(20);
+// 	/*OPMV色块追踪数据处理任务*/
+// 	ANO_CBTracking_Task(20);
+// 	/*OPMV寻线数据处理任务*/
+// 	ANO_LTracking_Task(20);
+// 	/*OPMV控制任务*/
+ 	ANO_OPMV_Ctrl_Task(20);
 }
 
 static void Loop_20Hz(void)	//50ms执行一次
@@ -210,7 +220,7 @@ void Scheduler_Run(void)
 	{
 		//获取系统当前时间，单位MS
 		uint32_t tnow = SysTick_GetTick();
-		//时间到则执行，未到则跳过
+		//进行判断，如果当前时间减去上一次执行的时间，大于等于该线程的执行周期，则执行线程
 		if(tnow - sched_tasks[index].last_run >= sched_tasks[index].interval_ticks)
 		{
 			

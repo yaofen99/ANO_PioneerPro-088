@@ -103,12 +103,22 @@ enum  //led编号
 };
 #define BIT_NULLLED 0x00		
 #define BIT_XLED 0x01		//飞控LED
-#define BIT_BLED 0x02		//蓝色
-#define BIT_RLED 0x04		//红色
-#define BIT_GLED 0x08		//绿色
-#define BIT_WLED 0x0e		//白色
+#define BIT_BLED 0x00		//蓝色
+#define BIT_RLED 0x00		//红色
+#define BIT_GLED 0x02		//绿色
+//#define BIT_GLED 0x08		//绿色
+#define BIT_WLED 0x04		//白色
 #define BIT_PLED 0x06		//紫色
-#define BIT_YLED 0x0c		//黄色
+#define BIT_YLED 0x00		//黄色
+
+//颜色坏了，白色改成红色，绿色改成蓝色
+//原来的红色和蓝色就删了
+
+
+
+
+
+
 
 typedef struct 
 {

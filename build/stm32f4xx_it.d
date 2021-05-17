@@ -36,9 +36,7 @@
 .\build\stm32f4xx_it.o: .\SRC\drivers\Drv_Gps.h
 .\build\stm32f4xx_it.o: .\SRC\applications\include.h
 .\build\stm32f4xx_it.o: .\SRC\drivers\Drv_BSP.h
-.\build\stm32f4xx_it.o: SRC\applications\Ano_UWB.h
+.\build\stm32f4xx_it.o: .\SRC\fc_specific\Ano_FlightDataCal.h
 .\build\stm32f4xx_it.o: .\SRC\fc_general\Ano_Filter.h
 .\build\stm32f4xx_it.o: .\SRC\fc_general\Ano_Math.h
-.\build\stm32f4xx_it.o: .\SRC\fc_general\Ano_Imu.h
-.\build\stm32f4xx_it.o: .\SRC\fc_specific\Ano_FlightDataCal.h
 .\build\stm32f4xx_it.o: .\SRC\drivers\Drv_RcIn.h

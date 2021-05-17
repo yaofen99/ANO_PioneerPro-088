@@ -19,9 +19,6 @@ typedef struct
 	float raw_data_vel[3];	
 	float w_dis_cm[3];
 	float w_vel_cmps[3];
-	float distance[4];
-	float location_from_distance[3];
-	float anthor_location[4][3];
 
 }_uwb_data_st;
 
@@ -34,7 +31,10 @@ extern _uwb_data_st uwb_data;
 void Ano_UWB_Get_Byte(u8 data);
 void Ano_UWB_Get_Data_Task(u8 dT_ms);
 void Ano_UWB_Data_Calcu_Task(u8 dT_ms);
-void Anthor_location_init(void);
+
+
+
+
 
 #endif
 

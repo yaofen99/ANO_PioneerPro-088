@@ -1,10 +1,69 @@
 #include "Ano_FlyCtrl.h"
 #include "Ano_DT.h"
 #include "include.h"
+#include "Ano_MotionCal.h"
+extern _fix_inte_filter_st wcz_hei_fus;
 
 _fly_ct_st program_ctrl;
 //设计成单一线程执行命令。
 static u16 val, spd;
+
+ u16 dt_ms = 0 ;
+extern s16 CH_N[CH_NUM];
+
+void Program_control_task()
+{
+	static u8 take_off_flag = 0;
+	static u8 land_flag = 0;
+	static u8 step = 0;
+
+	dt_ms += 20;
+
+	if (dt_ms >1000 && step==0)
+	{
+		take_off_flag = 1;
+		one_key_take_off();
+		if (dt_ms >3000)
+			step ++;
+	}
+	else if(step == 1)
+	{
+		Program_Ctrl_User_Set_Zcmps(1.6);
+		if ( wcz_hei_fus.out >50)
+		{
+			step++;
+			dt_ms = 0;
+			Program_Ctrl_User_Set_Zcmps(0);
+		}
+	}
+	else if(step == 2  && dt_ms >3000)
+	{
+		Program_Ctrl_User_Set_HXYcmps(0.5, 0);
+		if (dt_ms > 5000)
+		{
+			step++;
+			dt_ms = 0;
+			Program_Ctrl_User_Set_HXYcmps(0, 0);
+		}
+	}
+	else if (step == 3 && dt_ms >3000)
+	{
+		one_key_land();
+	}
+
+
+if ( wcz_hei_fus.out >80)
+	Program_Ctrl_User_Set_Zcmps(-0.5);
+
+if (CH_N[AUX3]<0)
+{
+	Program_Ctrl_User_Set_Zcmps(0);
+	Program_Ctrl_User_Set_HXYcmps(0, 0);
+}
+
+}
+
+
 
 void FlyCtrlDataAnl(u8 *data)
 {

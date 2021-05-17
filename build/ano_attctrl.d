@@ -42,7 +42,6 @@
 .\build\ano_attctrl.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_attctrl.o: .\SRC\applications\include.h
 .\build\ano_attctrl.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_attctrl.o: .\SRC\applications\Ano_UWB.h
 .\build\ano_attctrl.o: SRC\fc_specific\Ano_MagProcess.h
 .\build\ano_attctrl.o: .\SRC\drivers\Drv_spl06.h
 .\build\ano_attctrl.o: .\SRC\fc_general\Ano_MotionCal.h

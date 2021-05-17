@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2021-03-03 22:46:35
- * @LastEditTime: 2021-03-03 23:41:08
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: \ANO_PioneerPro-088\SRC\drivers\Drv_spl06.h
- */
 #ifndef _DRV_SPL06_H_
 #define _DRV_SPL06_H_
 
@@ -56,11 +48,6 @@ extern _spl06_st spl_data;
 
 void Drv_SPL06CSPin_Init(void);
 u8 Drv_Spl0601_Init(void);
-/**
-读取气压计数据
- * @param {*}
- * @return {*}
- */
 float Drv_Spl0601_Read(void);
 
 #endif

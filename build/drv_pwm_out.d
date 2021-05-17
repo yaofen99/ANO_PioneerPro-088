@@ -37,7 +37,4 @@
 .\build\drv_pwm_out.o: .\SRC\drivers\Drv_Gps.h
 .\build\drv_pwm_out.o: .\SRC\applications\include.h
 .\build\drv_pwm_out.o: .\SRC\drivers\Drv_BSP.h
-.\build\drv_pwm_out.o: .\SRC\applications\Ano_UWB.h
-.\build\drv_pwm_out.o: .\SRC\fc_general\Ano_Filter.h
 .\build\drv_pwm_out.o: .\SRC\fc_general\Ano_Math.h
-.\build\drv_pwm_out.o: .\SRC\fc_general\Ano_Imu.h

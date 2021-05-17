@@ -16,8 +16,7 @@
 #include "Ano_MagProcess.h"
 
 union Parameter Ano_Parame;
-
-_parameter_state_st para_sta; //数据存储标志位
+_parameter_state_st para_sta;
 
 
 void PID_Rest()
@@ -82,8 +81,8 @@ void Parame_Reset(u8 mode)
 		//Ano_Parame.set.pwmInMode = PWM;
 		Ano_Parame.set.heatSwitch = 0;
 		Ano_Parame.set.bat_cell = 3;
-		Ano_Parame.set.warn_power_voltage = 3.50f *3;
-		Ano_Parame.set.lowest_power_voltage = 3.4f *3;
+		Ano_Parame.set.warn_power_voltage = 3.50f;
+		Ano_Parame.set.lowest_power_voltage = 3.40f;
 		
 		Ano_Parame.set.auto_take_off_height = 0;//cm
 		Ano_Parame.set.auto_take_off_speed = 150;
@@ -210,8 +209,8 @@ s32 AnoParRead(u16 _id)
 		case PAR_SW_VER: p_val = SW_VER;	break;
 		//====设置
 		case PAR_BAT_CELLS:    p_val = Ano_Parame.set.bat_cell;	break;
-		case PAR_LV_WARN_100:  p_val = 1e2f *Ano_Parame.set.lowest_power_voltage;	break;
-		case PAR_LV_LAND_100:  p_val = 1e2f *Ano_Parame.set.warn_power_voltage;	break;
+		case PAR_LV_WARN_100:  p_val = 1e2f *Ano_Parame.set.warn_power_voltage;	break;
+		case PAR_LV_LAND_100:  p_val = 1e2f *Ano_Parame.set.lowest_power_voltage;	break;
 		case PAR_HEATSWITCH:   p_val = Ano_Parame.set.heatSwitch;	break;
 		case PAR_LANDSPEED:    p_val = Ano_Parame.set.auto_landing_speed;	break;
 		case PAR_TAKEOFFSPEED: p_val = Ano_Parame.set.auto_take_off_speed;	break;
@@ -292,12 +291,15 @@ s32 AnoParRead(u16 _id)
 
 void AnoParWrite(u16 _id, s32 _val)
 {
+	//触发写入（实际会停止触发后延时3秒才写入）
+	data_save();
+	//
 	switch(_id)
 	{
 		//====设置
 		case PAR_BAT_CELLS:    Ano_Parame.set.bat_cell = LIMIT(_val,0,65535);	break;
-		case PAR_LV_WARN_100:  Ano_Parame.set.lowest_power_voltage = 1e-2f *LIMIT(_val,0,65535);	break;
-		case PAR_LV_LAND_100:  Ano_Parame.set.warn_power_voltage = 1e-2f *LIMIT(_val,0,65535);	break;
+		case PAR_LV_WARN_100:  Ano_Parame.set.warn_power_voltage = 1e-2f *LIMIT(_val,0,65535);	break;
+		case PAR_LV_LAND_100:  Ano_Parame.set.lowest_power_voltage = 1e-2f *LIMIT(_val,0,65535);	break;
 		case PAR_HEATSWITCH:   Ano_Parame.set.heatSwitch = LIMIT(_val,0,2);	break;
 		case PAR_LANDSPEED:    Ano_Parame.set.auto_landing_speed = LIMIT(_val,0,65535);	break;
 		case PAR_TAKEOFFSPEED: Ano_Parame.set.auto_take_off_speed = LIMIT(_val,0,65535);	break;
@@ -316,14 +318,14 @@ void AnoParWrite(u16 _id, s32 _val)
 		case PAR_PID_3_D: Ano_Parame.set.pid_att_1level[YAW][2] = 1e-3f  *LIMIT(_val,0,65535);	break;
 		//角度
 		case PAR_PID_4_P: Ano_Parame.set.pid_att_2level[ROL][0] = 1e-3f *LIMIT(_val,0,65535);	break;
-		case PAR_PID_4_I: Ano_Parame.set.pid_att_2level[ROL][1] = -1;break;//LIMIT(p_val,0,65535);	break;
-		case PAR_PID_4_D: Ano_Parame.set.pid_att_2level[ROL][2] = -1;break;//LIMIT(p_val,0,65535);	break;
+		case PAR_PID_4_I: Ano_Parame.set.pid_att_2level[ROL][1] = 1e-3f *LIMIT(_val,0,65535);	break;
+		case PAR_PID_4_D: Ano_Parame.set.pid_att_2level[ROL][2] = 1e-3f *LIMIT(_val,0,65535);	break;
 		case PAR_PID_5_P: Ano_Parame.set.pid_att_2level[PIT][0] = 1e-3f *LIMIT(_val,0,65535);	break;
-		case PAR_PID_5_I: Ano_Parame.set.pid_att_2level[PIT][1] = -1;break;//LIMIT(p_val,0,65535);	break;
-		case PAR_PID_5_D: Ano_Parame.set.pid_att_2level[PIT][2] = -1;break;//LIMIT(p_val,0,65535);	break;
+		case PAR_PID_5_I: Ano_Parame.set.pid_att_2level[PIT][1] = 1e-3f *LIMIT(_val,0,65535);	break;
+		case PAR_PID_5_D: Ano_Parame.set.pid_att_2level[PIT][2] = 1e-3f *LIMIT(_val,0,65535);	break;
 		case PAR_PID_6_P: Ano_Parame.set.pid_att_2level[YAW][0] = 1e-3f *LIMIT(_val,0,65535);	break;
-		case PAR_PID_6_I: Ano_Parame.set.pid_att_2level[YAW][1] = -1;break;//LIMIT(p_val,0,65535);	break;
-		case PAR_PID_6_D: Ano_Parame.set.pid_att_2level[YAW][2] = -1;break;//LIMIT(p_val,0,65535);	break;
+		case PAR_PID_6_I: Ano_Parame.set.pid_att_2level[YAW][1] = 1e-3f *LIMIT(_val,0,65535);	break;
+		case PAR_PID_6_D: Ano_Parame.set.pid_att_2level[YAW][2] = 1e-3f *LIMIT(_val,0,65535);	break;
 		//垂直速度
 		case PAR_PID_7_P: Ano_Parame.set.pid_alt_1level[0] = 1e-3f *LIMIT(_val,0,65535);	break;
 		case PAR_PID_7_I: Ano_Parame.set.pid_alt_1level[1] = 1e-3f *LIMIT(_val,0,65535);	break;

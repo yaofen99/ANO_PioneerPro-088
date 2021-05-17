@@ -42,8 +42,7 @@
 .\build\ano_opmv_cbtracking_ctrl.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_opmv_cbtracking_ctrl.o: .\SRC\applications\include.h
 .\build\ano_opmv_cbtracking_ctrl.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_opmv_cbtracking_ctrl.o: SRC\applications\Ano_UWB.h
-.\build\ano_opmv_cbtracking_ctrl.o: .\SRC\fc_general\Ano_Filter.h
 .\build\ano_opmv_cbtracking_ctrl.o: SRC\applications\Ano_OF_DecoFusion.h
 .\build\ano_opmv_cbtracking_ctrl.o: .\SRC\fc_specific\Ano_FlightCtrl.h
+.\build\ano_opmv_cbtracking_ctrl.o: .\SRC\fc_general\Ano_Filter.h
 .\build\ano_opmv_cbtracking_ctrl.o: .\SRC\fc_general\Ano_MotionCal.h

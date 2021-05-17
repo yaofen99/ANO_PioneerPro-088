@@ -36,13 +36,12 @@
 .\build\ano_dt.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_dt.o: .\SRC\applications\include.h
 .\build\ano_dt.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_dt.o: SRC\applications\Ano_UWB.h
-.\build\ano_dt.o: .\SRC\fc_general\Ano_Filter.h
-.\build\ano_dt.o: .\SRC\fc_general\Ano_Math.h
 .\build\ano_dt.o: .\SRC\fc_general\Ano_Imu.h
 .\build\ano_dt.o: .\SRC\AnoImu\Ano_Imu_Data.h
 .\build\ano_dt.o: .\SRC\AnoImu\Ano_Imu_Calibration.h
 .\build\ano_dt.o: .\SRC\fc_specific\Ano_MagProcess.h
+.\build\ano_dt.o: .\SRC\fc_general\Ano_Filter.h
+.\build\ano_dt.o: .\SRC\fc_general\Ano_Math.h
 .\build\ano_dt.o: .\SRC\fc_specific\Ano_Power.h
 .\build\ano_dt.o: .\SRC\drivers\Drv_adc.h
 .\build\ano_dt.o: .\SRC\fc_general\Ano_MotionCal.h

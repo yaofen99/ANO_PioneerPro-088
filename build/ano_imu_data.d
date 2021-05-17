@@ -37,7 +37,4 @@
 .\build\ano_imu_data.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_imu_data.o: .\SRC\applications\include.h
 .\build\ano_imu_data.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_imu_data.o: .\SRC\applications\Ano_UWB.h
-.\build\ano_imu_data.o: .\SRC\fc_general\Ano_Filter.h
-.\build\ano_imu_data.o: .\SRC\fc_general\Ano_Math.h
-.\build\ano_imu_data.o: .\SRC\fc_general\Ano_Imu.h
+.\build\ano_imu_data.o: .\SRC\fc_general\ANO_Math.h

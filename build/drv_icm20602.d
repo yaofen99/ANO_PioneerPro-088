@@ -37,10 +37,8 @@
 .\build\drv_icm20602.o: .\SRC\drivers\Drv_Gps.h
 .\build\drv_icm20602.o: .\SRC\applications\include.h
 .\build\drv_icm20602.o: .\SRC\drivers\Drv_BSP.h
-.\build\drv_icm20602.o: .\SRC\applications\Ano_UWB.h
 .\build\drv_icm20602.o: .\SRC\fc_general\Ano_Filter.h
 .\build\drv_icm20602.o: .\SRC\fc_general\Ano_Math.h
-.\build\drv_icm20602.o: .\SRC\fc_general\Ano_Imu.h
 .\build\drv_icm20602.o: SRC\drivers\Drv_spi.h
 .\build\drv_icm20602.o: SRC\drivers\Drv_led.h
 .\build\drv_icm20602.o: SRC\drivers\Drv_heating.h

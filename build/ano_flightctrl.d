@@ -41,7 +41,6 @@
 .\build\ano_flightctrl.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_flightctrl.o: .\SRC\applications\include.h
 .\build\ano_flightctrl.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_flightctrl.o: .\SRC\applications\Ano_UWB.h
 .\build\ano_flightctrl.o: SRC\fc_specific\Ano_MagProcess.h
 .\build\ano_flightctrl.o: .\SRC\drivers\Drv_spl06.h
 .\build\ano_flightctrl.o: .\SRC\fc_general\Ano_MotionCal.h
@@ -56,6 +55,7 @@
 .\build\ano_flightctrl.o: .\SRC\applications\Ano_OF.h
 .\build\ano_flightctrl.o: .\SRC\applications\Ano_OF_DecoFusion.h
 .\build\ano_flightctrl.o: .\SRC\applications\Ano_FlyCtrl.h
+.\build\ano_flightctrl.o: .\SRC\applications\Ano_UWB.h
 .\build\ano_flightctrl.o: .\SRC\fc_general\Ano_Sensor_Basic.h
 .\build\ano_flightctrl.o: .\SRC\AnoImu\Ano_Imu_Calibration.h
 .\build\ano_flightctrl.o: .\SRC\applications\Ano_ProgramCtrl_User.h

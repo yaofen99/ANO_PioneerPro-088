@@ -40,7 +40,6 @@
 .\build\ano_motioncal.o: .\SRC\drivers\Drv_Gps.h
 .\build\ano_motioncal.o: .\SRC\applications\include.h
 .\build\ano_motioncal.o: .\SRC\drivers\Drv_BSP.h
-.\build\ano_motioncal.o: .\SRC\applications\Ano_UWB.h
-.\build\ano_motioncal.o: .\SRC\fc_general\Ano_Imu.h
+.\build\ano_motioncal.o: SRC\fc_general\Ano_Imu.h
 .\build\ano_motioncal.o: .\SRC\fc_specific\Ano_MotorCtrl.h
 .\build\ano_motioncal.o: .\SRC\fc_general\Ano_Pid.h

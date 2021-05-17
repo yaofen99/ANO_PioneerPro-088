@@ -21,6 +21,7 @@ typedef struct
 }_fly_ct_st;
 extern _fly_ct_st program_ctrl;
 
+extern void Program_control_task();
 
 //static
 void FlyCtrlReset(void);

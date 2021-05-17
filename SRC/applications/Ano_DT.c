@@ -40,7 +40,7 @@
 #define DT_RX_BUFNUM  64
 #define DT_ODNUM	5	//非循环发送数据缓冲大小
 #define DT_SENDPTR_HID	Usb_Hid_Adddata
-#define DT_SENDPTR_U2	Usart2_Send
+#define DT_SENDPTR_U2	Uart5_Send
 
 //越往前发送优先级越高，如果需要修改，这里和h文件里的枚举需要同时改
 const u8  _cs_idlist[CSID_NUM]	 	= {0x20,0x21,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0f,0x30,0x32,0x33,0x34,0x40,0x41,0xFA};
@@ -912,15 +912,19 @@ static void AnoDTDataAnl(u8 type, u8 *data,u8 len)
 					else if(*(data+6)==0xAA)	//恢复默认PID
 					{
 						PID_Rest();
+						data_save();
+						
 					}
 					else if(*(data+6)==0xAB)	//恢复默认参数
 					{					
 						Parame_Reset(1);
+						data_save();
 					}
 					else if(*(data+6)==0xAC)	//恢复所有参数
 					{
 						PID_Rest();
 						Parame_Reset(2);
+						data_save();
 					}					
 				}
 				else if(*(data+5)==0x01)
@@ -1108,7 +1112,8 @@ void ANO_DT_Task1Ms(void)
 	//USB数据发送执行
 	for(u8 i=0; i<CSID_NUM; i++)
 	{
-		CheckDotWts(USE_HID,i);
+		if(CheckDotWts(USE_HID,i))
+			break;
 	}
 	//USB发送服务程序
 	Usb_Hid_Send();

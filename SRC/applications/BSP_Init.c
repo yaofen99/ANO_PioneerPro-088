@@ -53,29 +53,38 @@ u8 All_Init()
 	DrvBmi088Init();	//陀螺仪加速度计初始化，若初始化成功，则将陀螺仪和加速度的初始化成功标志位赋值
 	sens_hd_check.mag_ok = 1;       //标记罗盘OK	
 	sens_hd_check.baro_ok = Drv_Spl0601_Init();       		//气压计初始化
-
+	
 	Usb_Hid_Init();					//飞控usb接口的hid初始化
 	Delay_ms(100);					//延时
 	
+	Usart1_Init(500000);			//串口2初始化，函数参数为波特率
+	Delay_ms(10);
 	Usart2_Init(500000);			//串口2初始化，函数参数为波特率
 	Delay_ms(10);					//延时	
-
+//	Uart4_Init(115200);				//首先判断是否连接的是激光模块
+//	if(!Drv_Laser_Init())			//激光没有有效连接，则配置为光流模式
+//		Uart4_Init(500000);
+//	Delay_ms(10);					//延时
+//	Usart3_Init(500000);			//连接UWB
+//	Delay_ms(10);					//延时
+	//
 	Usart3_Init(500000);			//连接OPENMV
 	//	
-	Uart4_Init(19200);	//接优像光流
-	Uart5_Init(115200);//接大功率激光	
+//	Uart4_Init(19200);	//接优像光流
+//  Uart5_Init(115200);//接大功率激光	
+	Uart5_Init(500000); //数传
 //	MyDelayMs(200);	
 	//优像光流初始化
-	of_init_type = (Drv_OFInit()==0)?0:2;
-	if(of_init_type==2)//优像光流初始化成功
-	{
-		//大功率激光初始化
-		Drv_Laser_Init();	
-	}
-	else if(of_init_type==0)//优像光流初始化失败
-	{
+//	of_init_type = (Drv_OFInit()==0)?0:2;
+//	if(of_init_type==2)//优像光流初始化成功
+//	{
+//		//大功率激光初始化
+//		Drv_Laser_Init();	
+//	}
+//	else if(of_init_type==0)//优像光流初始化失败
+//	{
 		Uart4_Init(500000);	//接匿名光流
-	}
+//	}
 	//
 
 	Drv_AdcInit();

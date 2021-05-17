@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2021-03-03 22:46:35
- * @LastEditTime: 2021-03-03 23:39:52
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \ANO_PioneerPro-088\SRC\AnoImu\Ano_Imu_Task.c
- */
 #include "Ano_Imu_Data.h"
 #include "Ano_Imu_Calibration.h"
 #include "Ano_Imu_Task.h"
@@ -32,9 +24,9 @@ void ImuServices_1ms_c()
 		//
 		if(st_imu_cali.gyr_cali_on)
 		{
-			//静止时的数据读取，称为校准，数据存储在全局变量gyr_sum_av里
+			//
 			if(GetGyrAvValue(st_imu_cali.gyr_stable,st_imuData.f_gyrRaw,(float *)Ano_Parame.set.gyr_zero_offset))
-			{//gyr_cali_on = 2 时，校准状态，为1时，读取状态并保存，计算 CALI_AV_N 个数值的平均值
+			{
 				if(st_imu_cali.gyr_cali_on==2)
 				{
 					st_imu_cali.gyr_cali_on = 0;

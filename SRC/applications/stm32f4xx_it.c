@@ -62,17 +62,22 @@ void TIM4_IRQHandler(void)
 
 void USART1_IRQHandler(void)
 {
-	Uart1_GPS_IRQ();
+//	Uart1_GPS_IRQ();
+Uart4_IRQ();
 }
 
 void USART2_IRQHandler(void)
 {
-	Usart2_IRQ();
+	//Usart2_IRQ();
+	Uart4_IRQ();
+
+
 }
 
 void USART3_IRQHandler(void)
 {
 	Usart3_IRQ();
+	//Uart4_IRQ();
 }
 
 void UART4_IRQHandler(void)
